@@ -1,10 +1,12 @@
 <?php
 //$page_title = 'Home';
+require "header.php";
 
 /* РАБОТА С ФАЙЛАМИ */
 //include_once 'working_files/index.php';
 //include_once 'kats/SumArrays.php';
-include_once 'kats/YouonlyneedoneBeginner.php';
+//include_once 'kats/YouonlyneedoneBeginner.php';
+include_once 'calculator/index.php';
 
 //include_once 'header.php'; // Подключает файл один раз, даже если файл подключен и на другой странице
 //include_once 'form.php';
@@ -14,7 +16,6 @@ include_once 'kats/YouonlyneedoneBeginner.php';
 //include_once '_array.php';
 //include_once '_data.php';
 //include_once 'footer.php';
-require "header.php";
 //require "footer.php";
 
 //define("TEAM_715", 715);
