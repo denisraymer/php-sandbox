@@ -1,6 +1,6 @@
 <?php
-    if ($_POST['name'] === '' || $_POST['name'] != 'admin') {
-        header('Location: index.php');
-    } else {
-        echo 'You are admin!';
-    }
+if ($_POST['name'] === '' || $_POST['name'] != 'admin') {
+    header('Location: _example.php');
+} else {
+    echo 'You are admin!';
+}

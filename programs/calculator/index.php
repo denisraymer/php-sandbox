@@ -21,7 +21,7 @@ function printArrayValues($array): string
 {
     $result = '';
 
-    foreach ($array as $key => $value) {
+    foreach ($array as $value) {
         $result .= ', ' . $value;
     }
 
@@ -59,37 +59,38 @@ function division($operand1, $operand2)
     return $operand1 / $operand2;
 }
 
-function calculator($current_operator, $operand_1, $operand_2)
+function calculator($currentOperator, $operand1, $operand2)
 {
-    $operator_list = ['subtraction', 'addition', 'multiplication', 'division'];
+    $operatorList = ['subtraction', 'addition', 'multiplication', 'division'];
 
-    if (!$current_operator) {
+    if (!$currentOperator) {
         echo 'Укажите в адресной строке математический оператор которым хотите воспользоваться' . '<br/>';
-        echo 'Доступные математические операторы: ' . printArrayValues($operator_list) . '<br/>';
-        echo 'Пример: ' . $_SERVER['HTTP_HOST'] . '?operator=division&operand_1=6&operand_2=6';
+        echo 'Доступные математические операторы: ' . printArrayValues($operatorList) . '<br/>';
+        echo 'Пример: ' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '?operator=division&operand_1=6&operand_2=6';
         return die;
     }
 
-    $is_operator_available = in_array($current_operator, $operator_list);
+    $isOperatorAvailable = in_array($currentOperator, $operatorList);
 
-    if (!$is_operator_available) {
-        echo 'Оператор' . ' ' . '<span style="color: deeppink">' . $current_operator . '</span>' . ' ' . 'отсутсвует!' . '<br/>';
+    if (!$isOperatorAvailable) {
+        echo 'Оператор' . ' ' . '<span style="color: deeppink">' . $currentOperator . '</span>' . ' ' . 'отсутсвует!' . '<br/>';
         echo 'Возможно вы указали не существующий математический оператор или допустили ошибку в его названии.' . '<br/>';
-        echo 'Попробуйте один из этих вариантов: ' . printArrayValues($operator_list) . ' !' . '<br/>';
+        echo 'Попробуйте один из этих вариантов: ' . printArrayValues($operatorList) . ' !' . '<br/>';
 
         return die;
     }
 
-    return match ($current_operator) {
-        'subtraction' => subtraction($operand_1, $operand_2),
-        'addition' => sum($operand_1, $operand_2),
-        'multiplication' => multiplication($operand_1, $operand_2),
-        'division' => division($operand_1, $operand_2),
+    return match ($currentOperator) {
+        'subtraction' => subtraction($operand1, $operand2),
+        'addition' => sum($operand1, $operand2),
+        'multiplication' => multiplication($operand1, $operand2),
+        'division' => division($operand1, $operand2),
+        default => 0,
     };
 }
 
-$current_operator = $_GET['operator'] ?? null;
-$operand_1 = $_GET['operand_1'] ?? 0;
-$operand_2 = $_GET['operand_2'] ?? 0;
+$currentOperator = $_GET['operator'] ?? null;
+$operand1 = $_GET['operand_1'] ?? 0;
+$operand2 = $_GET['operand_2'] ?? 0;
 
-echo 'Результат вычисления: ' . calculator($current_operator, $operand_1, $operand_2);
+echo 'Результат вычисления: ' . calculator($currentOperator, $operand1, $operand2);
