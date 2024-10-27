@@ -13,6 +13,9 @@ function routing($path = '/'): void
     case "/test-stand":
       require __DIR__ . '/test-stand.php';
       break;
+    case "/calculator-oop":
+      require __DIR__ . '/oop/calculator_oop/index.php';
+      break;
     default:
       break;
   }
